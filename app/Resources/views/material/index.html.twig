@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lista Materiałów</h1>
+
+    {% if materials is not empty %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kod</th>
+                <th>Nazwa</th>
+                <th>Jednostka</th>
+                <th>Grupa</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for material in materials %}
+            <tr>
+                <td><a href="{{ path('material_show', { 'id': material.id }) }}">{{ material.id }}</a></td>
+                <td>{{ material.kod }}</td>
+                <td>{{ material.nazwa }}</td>
+                <td>
+                    {% if material.jednostka is defined %}
+                            {{ material.jednostka.nazwa }}
+                    {% else %}
+                      Brak
+                    {% endif %}
+                </td>
+                <td>
+                {% if material.grupa is defined %}
+                    {{ material.grupa.nazwa }}
+                {% else %}
+                  Brak
+                {% endif %}
+                </td>
+                <td>
+                    <ul>
+
+                            <a href="{{ path('material_show', { 'id': material.id }) }}" class="btn btn-primary btn-sm">pokaż</a>
+                            <a href="{{ path('material_edit', { 'id': material.id }) }}" class="btn btn-secondary btn-sm">edytuj</a>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+      <p><b>Brak danych</b> do wyświetlenia</p>
+    {% endif %}
+
+
+        <a href="{{ path('material_new') }}" class="btn btn-primary">Utwórz nowy materiał</a>
+
+{% endblock %}

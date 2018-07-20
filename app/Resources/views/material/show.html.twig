@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Material</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ material.id }}</td>
+            </tr>
+            <tr>
+                <th>Kod</th>
+                <td>{{ material.kod }}</td>
+            </tr>
+            <tr>
+                <th>Nazwa</th>
+                <td>{{ material.nazwa }}</td>
+
+            </tr>
+            <tr>
+              <th>Jednostka</th>
+              <td>{{ material.jednostka.nazwa }}</td>
+
+            </tr>
+
+            <tr>
+              <th>Grupa</th>
+              <td>{{ material.grupaId.nazwa }}</td>
+            </tr>
+
+
+
+
+        </tbody>
+    </table>
+
+<div class="row">
+
+  <div class="col-md-1">
+    <a href="{{ path('material_index') }}" class="btn btn-secondary">Powrót</a>
+  </div>
+
+</div>
+
+{% include 'material/_form_delete.html.twig' %}
+
+
+{% endblock %}

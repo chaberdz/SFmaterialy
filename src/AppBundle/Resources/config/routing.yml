@@ -1,0 +1,4 @@
+app_jednostka:
+    resource: "@AppBundle/Resources/config/routing/jednostka.php"
+    prefix:   /jednostka
+

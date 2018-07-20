@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lista jednostek</h1>
+
+
+    {% if jednostkas is not empty %}
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Nazwa</th>
+                  <th>Skrot</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for jednostka in jednostkas %}
+              <tr>
+                  <td><a href="{{ path('jednostka_show', { 'id': jednostka.id }) }}">{{ jednostka.id }}</a></td>
+                  <td>{{ jednostka.nazwa }}</td>
+                  <td>{{ jednostka.skrot }}</td>
+                  <td>
+
+                              <a href="{{ path('jednostka_show', { 'id': jednostka.id }) }}" class="btn btn-primary btn-sm">pokaż</a>
+
+                              <a href="{{ path('jednostka_edit', { 'id': jednostka.id }) }}" class="btn btn-secondary btn-sm">edytuj</a>
+                
+                  </td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+    {% else %}
+      <p><b>Brak danych</b> do wyświetlenia</p>
+    {% endif %}
+
+            <a class="btn btn-primary" href="{{ path('jednostka_new') }}"><i class="fa fa-plus" aria-hidden="true"></i>
+ Utwórz nową jednostke</a>
+
+{% endblock %}

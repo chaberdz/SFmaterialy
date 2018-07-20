@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Grupa edycja</h1>
+
+
+    {{ form_start(edit_form) }}
+
+      {% include '_validation.html.twig' %}
+
+      {{ form_label(edit_form) }}
+      {{ form_widget(edit_form) }}
+
+
+      <div class="row">
+        <div class="col-md-1">
+          <input type="submit" class="btn btn-primary" value="Edytuj" />
+        </div>
+
+        {{ form_end(edit_form) }}
+
+        <div class="col-md-3">
+          <a href="{{ path('grupa_index') }}" class="btn btn-secondary">Powrót</a>
+        </div>
+
+        <div class="col-md-1">
+          {{ form_start(delete_form) }}
+              <input type="submit" value="Usuń" class="btn btn-danger">
+          {{ form_end(delete_form) }}
+        </div>
+
+      </div>
+
+{% endblock %}
