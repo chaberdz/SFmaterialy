@@ -1,0 +1,20 @@
+material_index:
+  path:   /
+  defaults: { _controller:AppBundle:Material:Index }
+
+material_show:
+  path:     /{id}/show
+  defaults: { _controller:AppBundle:Material:Show }
+
+material_edit:
+  path:     /{id}/edit
+  defaults: { _controller:AppBundle:Material:Edit }
+
+material_new:
+  path:     /new
+  defaults: { _controller:AppBundle:Material:New }
+
+material_delete:
+  path:     /{id}/delete
+  defaults: { _controller:AppBundle:Material:Delete }
+  methods:  [DELETE]

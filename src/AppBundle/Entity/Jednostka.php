@@ -6,12 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use AppBundle\Entity\CreatedUpdated as Base;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="jednostka")
+ * @ORM\HasLifecycleCallbacks()
  */
 
-class Jednostka
+class Jednostka extends Base
 {
   /**
     * @ORM\Id

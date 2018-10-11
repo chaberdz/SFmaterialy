@@ -1,0 +1,20 @@
+grupa_index:
+  path:   /
+  defaults: { _controller:AppBundle:Grupa:Index }
+
+grupa_show:
+  path:     /{id}/show
+  defaults: { _controller:AppBundle:Grupa:Show }
+
+grupa_edit:
+  path:     /{id}/edit
+  defaults: { _controller:AppBundle:Grupa:Edit }
+
+grupa_new:
+  path:     /new
+  defaults: { _controller:AppBundle:Grupa:New }
+
+grupa_delete:
+  path:     /{id}/delete
+  defaults: { _controller:AppBundle:Grupa:Delete }
+  methods:  [DELETE]

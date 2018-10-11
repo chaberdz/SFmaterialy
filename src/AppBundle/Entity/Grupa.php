@@ -6,11 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use AppBundle\Entity\CreatedUpdated as Base;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="grupa")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Grupa
+class Grupa extends Base
 {
   /**
   * @ORM\Id
@@ -28,7 +31,7 @@ class Grupa
    * @ORM\ManyToOne(targetEntity="Grupa")
    * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
    */
-    private $parentId;
+    private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="Material", mappedBy="grupa")
@@ -62,15 +65,15 @@ class Grupa
     }
 
 
-    public function setParentId($parentId)
+    public function setParent($parent)
     {
-        $this->parentId = $parentId;
+        $this->parent = $parent;
 
         return $this;
     }
 
-    function getParentId()
+    function getParent()
     {
-        return $this->parentId;
+        return $this->parent;
     }
 }

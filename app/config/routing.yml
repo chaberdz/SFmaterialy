@@ -3,14 +3,13 @@ start:
     defaults: { _controller: AppBundle:Jednostka:index}
 
 app_jednostka:
-    resource: '@AppBundle/Resources/config/routing/jednostka.php'
+    resource: '@AppBundle/Resources/config/routing/jednostka.yml'
     prefix: /jednostka
 
-
 app_grupa:
-    resource: '@AppBundle/Resources/config/routing/grupa.php'
+    resource: '@AppBundle/Resources/config/routing/grupa.yml'
     prefix: /grupa
 
 app_material:
-    resource: '@AppBundle/Resources/config/routing/material.php'
+    resource: '@AppBundle/Resources/config/routing/material.yml'
     prefix: /material

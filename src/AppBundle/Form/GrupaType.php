@@ -12,6 +12,7 @@ use AppBundle\Repository\GrupaRepository;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class GrupaType extends AbstractType
 {
@@ -26,10 +27,10 @@ class GrupaType extends AbstractType
       $grupa = $em->getRepository('AppBundle:Grupa');
 
       $builder->add('nazwa', TextType::class, ['label' => 'Nazwa'])
-               ->add('parentId', ChoiceType::class, ['data' => 0,
-                                                     'label' => 'Grupa nadrzędna',
-                                                     'choices' => $grupa->getListForChoiceField()
-                                                    ]);
+               ->add('parentId', EntityType::class,
+                               ['class' => Grupa::class,
+                                'choice_label' => 'nazwa'] );
+
     }
 
     /**
