@@ -36,12 +36,14 @@
                 {% endif %}
                 </td>
                 <td>
-                    <ul>
+                  <form action="{{ path('material_delete', { 'id': material.id }) }}" method="post">
+                      <input type="hidden" name="_method" value="DELETE" />
+                      {{ form_widget(deleteForms[material.id]) }}
+                      <button type="submit" class="btn btn-sm btn-danger">usuń  </button>
+                      <a href="{{ path('material_show', { 'id': material.id }) }}" class="btn btn-primary btn-sm">pokaż</a>
+                      <a href="{{ path('material_edit', { 'id': material.id }) }}" class="btn btn-secondary btn-sm">edytuj</a>
 
-                            <a href="{{ path('material_show', { 'id': material.id }) }}" class="btn btn-primary btn-sm">pokaż</a>
-                            <a href="{{ path('material_edit', { 'id': material.id }) }}" class="btn btn-secondary btn-sm">edytuj</a>
-
-                    </ul>
+                  </form>
                 </td>
             </tr>
         {% endfor %}

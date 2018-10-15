@@ -16,18 +16,22 @@ use AppBundle\Form\MaterialType;
  */
 class MaterialController extends Controller
 {
-    /**
-     * Lists all material entities.
-     *
-     */
+
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $materials = $em->getRepository('AppBundle:Material')->findAll();
 
+        $deleteForms = array();
+
+        foreach ($materials as $material) {
+            $deleteForms[$material->getId()] = $this->createDeleteForm($material)->createView();
+        }
+
         return $this->render('material/index.html.twig', array(
             'materials' => $materials,
+            'deleteForms' => $deleteForms,
         ));
     }
 

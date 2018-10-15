@@ -27,7 +27,7 @@ class GrupaType extends AbstractType
       $grupa = $em->getRepository('AppBundle:Grupa');
 
       $builder->add('nazwa', TextType::class, ['label' => 'Nazwa'])
-               ->add('parentId', EntityType::class,
+               ->add('parent', EntityType::class,
                                ['class' => Grupa::class,
                                 'choice_label' => 'nazwa'] );
 

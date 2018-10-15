@@ -21,8 +21,13 @@ class JednostkaController extends Controller
 
         $jednostkas = $em->getRepository('AppBundle:Jednostka')->findAll();
 
+        foreach ($jednostkas as $jednostka) {
+            $deleteForms[$jednostka->getId()] = $this->createDeleteForm($jednostka)->createView();
+        }
+
         return $this->render('jednostka/index.html.twig', array(
             'jednostkas' => $jednostkas,
+            'deleteForms' => $deleteForms
         ));
     }
 
@@ -107,7 +112,7 @@ class JednostkaController extends Controller
 
         //sprawdzanie, czy materiał korzysta z danej jednostki
         $material_exist = $em->getRepository('AppBundle:Material')
-                             ->findOneBy(['jednostkaId' => $jednostka->getId() ]);
+                             ->findOneBy(['jednostka' => $jednostka->getId() ]);
 
 
         if (!($material_exist)) {

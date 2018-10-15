@@ -20,12 +20,10 @@ class GrupaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
         //wszystkie grupy
         $grupas = $em->getRepository('AppBundle:Grupa')->findAll();
 
-
-        $tmp = $em->getRepository('AppBundle:Grupa')->findBy(array('parentId' => null));
+        $tmp = $em->getRepository('AppBundle:Grupa')->findBy(array('parent' => null));
 
         $tree = [];
 
@@ -33,7 +31,7 @@ class GrupaController extends Controller
 
           $tree[$i][0] = $tmp[$i];
 
-          $tmp2 = $em->getRepository('AppBundle:Grupa')->findBy(array('parentId' => $tree[$i][0]->getId()  ));
+          $tmp2 = $em->getRepository('AppBundle:Grupa')->findBy(array('parent' => $tree[$i][0]->getId()  ));
 
           if (count($tmp2) > 0 )
           {
@@ -42,7 +40,7 @@ class GrupaController extends Controller
 
                       $tree[$i][$j+1] = $tmp2[$j];
 
-                      $tmp3 = $em->getRepository('AppBundle:Grupa')->findBy(array('parentId' => $tree[$i][$j+1]->getId()  ));
+                      $tmp3 = $em->getRepository('AppBundle:Grupa')->findBy(array('parent' => $tree[$i][$j+1]->getId()  ));
 
                       if (count($tmp3) > 0 )
                       {
@@ -92,14 +90,14 @@ class GrupaController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $parent = $em->getRepository('AppBundle:Grupa')->find($grupa->getParentId()  );
+            $parent = $em->getRepository('AppBundle:Grupa')->find($grupa->getParent()  );
 
-            $grupa->setParentId($parent);
+            $grupa->setparent($parent);
 
             $em->persist($grupa);
             $em->flush();
 
-            return $this->redirectToRoute('grupa_show', array('id' => $grupa->getId()));
+            return $this->redirectToRoute('grupa_show', array('id' => $grupa->getId() ));
         }
 
         return $this->render('grupa/new.html.twig', array(
@@ -132,8 +130,8 @@ class GrupaController extends Controller
 
       $deleteForm = $this->createDeleteForm($grupa);
 
-      if ($grupa->getParentId() == null)
-        $parent_id = 0; else $parent_id = $grupa->getParentId()->getId();
+      if ($grupa->getparent() == null)
+        $parent_id = 0; else $parent_id = $grupa->getparent()->getId();
 
       $editForm = $this->createForm('AppBundle\Form\GrupaType', $grupa, ['em' => $em]);
 
@@ -141,9 +139,9 @@ class GrupaController extends Controller
 
       if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-        $parent = $em->getRepository('AppBundle:Grupa')->find($grupa->getParentId()  );
+        $parent = $em->getRepository('AppBundle:Grupa')->find($grupa->getparent()  );
 
-        $grupa->setParentId($parent);
+        $grupa->setparent($parent);
         $em->flush();
 
 
@@ -175,7 +173,7 @@ class GrupaController extends Controller
 
           if (!($is_material)) { //sprawdzenie czy do grupy jest przypisany materiał
 
-            $is_grupa = $em->getRepository('AppBundle:Grupa')->findOneBy(['parentId' => $grupa->getId() ]);
+            $is_grupa = $em->getRepository('AppBundle:Grupa')->findOneBy(['parent' => $grupa->getId() ]);
 
             if (!($is_grupa)) {
                 $em->remove($grupa);
