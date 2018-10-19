@@ -2,7 +2,7 @@
 
 Prosta aplikacja napisana w Symfony 2 która implementuje 3 klasy z poniższego diagramu oraz wymagania funkcjonalne.Wykorzystuje bazę danych MySQL.
 # Diagram
-![alt text](https://raw.githubusercontent.com/chaberdz/SFmaterialy/opis/web/materialy_uml.PNG)
+![alt text](https://raw.githubusercontent.com/chaberdz/SFmaterialy/master/web/materialy_uml.PNG)
 
 # Wymagania funkcjonalne:
 1. Można utworzyć dowolną ilość Grup Materiałów.
